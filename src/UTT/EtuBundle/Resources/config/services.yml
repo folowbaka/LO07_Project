@@ -1,0 +1,4 @@
+services:
+#    utt_etu.example:
+#        class: UTT\EtuBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

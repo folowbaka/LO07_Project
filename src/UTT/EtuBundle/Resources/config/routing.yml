@@ -1,0 +1,6 @@
+utt_etu_homepage:
+    path:     /
+    defaults: { _controller: UTTEtuBundle:Etu:index }
+utt_etu_add:
+        path:     /AjouterEtudiant
+        defaults: { _controller: UTTEtuBundle:Etu:add }

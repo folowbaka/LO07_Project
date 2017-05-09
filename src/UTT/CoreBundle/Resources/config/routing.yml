@@ -1,0 +1,3 @@
+utt_core_homepage:
+    path:     /
+    defaults: { _controller: UTTCoreBundle:Core:index }
