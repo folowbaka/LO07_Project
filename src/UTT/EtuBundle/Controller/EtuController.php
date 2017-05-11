@@ -9,6 +9,9 @@
 namespace UTT\EtuBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use UTT\EtuBundle\Entity\Etudiant;
+use UTT\EtuBundle\Form\EtudiantType;
 
 class EtuController extends Controller
 {
@@ -16,8 +19,14 @@ class EtuController extends Controller
     {
         return $this->render('UTTEtuBundle:Etu:index.html.twig');
     }
-    public function addAction()
+    public function addAction(Request $request)
     {
-        return $this->render('UTTEtuBundle:Etu:add.html.twig');
+        $etudiant = new Etudiant();
+        $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);
+
+
+        return $this->render('UTTEtuBundle:Etu:add.html.twig',array(
+            'form' => $form->createView(),
+        ));
     }
 }

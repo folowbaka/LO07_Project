@@ -13,12 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Etudiant
 {
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="idetu", type="integer")
+     * @ORM\Column(name="idetudiant", type="string",length=255)
      * @ORM\Id
      */
-    private $idEtu;
+    private $idEtudiant;
 
     /**
      * @var string
@@ -39,13 +39,13 @@ class Etudiant
      *
      * @return int
      */
-    public function getIdEtu()
+    public function getIdEtudiant()
     {
-        return $this->idEtu;
+        return $this->idEtudiant;
     }
-    public function setIdEtu($idEtu)
+    public function setIdEtudiant($idEtudiant)
     {
-        $this->idEtu=$idEtu;
+        $this->idEtudiant=$idEtudiant;
         return this;
     }
 

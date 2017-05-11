@@ -4,7 +4,7 @@ utt_core:
 
 utt_etu:
     resource: "@UTTEtuBundle/Resources/config/routing.yml"
-    prefix:   /Etudiant
+    prefix:   /etudiant
 
 app:
     resource: '@AppBundle/Controller/'
