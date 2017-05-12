@@ -25,9 +25,9 @@ class LoadFilliere implements FixtureInterface
             'LIB'
         );
 
-        foreach ($names as $name) {
+        foreach ($names as $nom) {
             $filliere = new Filliere();
-            $filliere->setNom($name);
+            $filliere->setNom($nom);
 
             // On la persiste
             $manager->persist($filliere);
