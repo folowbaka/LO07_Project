@@ -4,16 +4,17 @@
 {% block etu_body %}
 
     <h2>Ajouter Etudiant</h2>
-
+    <div class="well">
     {{ form_start(form) }}
 
     <div class="form-group">{{ form_row(form.idEtudiant, {'attr':{'class':'form-control'}}) }}</div>
     <div class="form-group">{{ form_row(form.nom, {'attr':{'class':'form-control'}}) }}</div>
     <div class="form-group">{{ form_row(form.prenom, {'attr':{'class':'form-control'}}) }}</div>
-
-    <button type="submit">Valider</button>
-    <button type="reset">Reset</button>
+    <div class="form-group">{{ form_row(form.admission, {'attr':{'class':'form-control'}}) }}</div>
+    <div class="form-group">{{ form_row(form.filliere, {'attr':{'class':'form-control'}}) }}</div>
+        <button type="submit" class="btn btn-primary">Valider</button>
+    <button type="reset" class="btn btn-default">Reset</button>
 
     {{ form_end(form) }}
-
+    </div>
 {% endblock %}

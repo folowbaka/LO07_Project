@@ -34,6 +34,18 @@ class Etudiant
      */
     private $prenom;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="UTT\EtuBundle\Entity\Admission")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $admission;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UTT\EtuBundle\Entity\Filliere")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $filliere;
+
      /**
      * Get id
      *
@@ -46,7 +58,7 @@ class Etudiant
     public function setIdEtudiant($idEtudiant)
     {
         $this->idEtudiant=$idEtudiant;
-        return this;
+        return $this;
     }
 
     /**
@@ -97,5 +109,52 @@ class Etudiant
         return $this->prenom;
     }
 
-}
 
+    /**
+     * Set admission
+     *
+     * @param \UTT\EtuBundle\Entity\Admission $admission
+     *
+     * @return Etudiant
+     */
+    public function setAdmission(\UTT\EtuBundle\Entity\Admission $admission)
+    {
+        $this->admission = $admission;
+
+        return $this;
+    }
+
+    /**
+     * Get admission
+     *
+     * @return \UTT\EtuBundle\Entity\Admission
+     */
+    public function getAdmission()
+    {
+        return $this->admission;
+    }
+
+    /**
+     * Set filliere
+     *
+     * @param \UTT\EtuBundle\Entity\Filliere $filliere
+     *
+     * @return Etudiant
+     */
+    public function setFilliere(\UTT\EtuBundle\Entity\Filliere $filliere)
+    {
+        $this->filliere = $filliere;
+
+        return $this;
+    }
+
+    /**
+     * Get filliere
+     *
+     * @return \UTT\EtuBundle\Entity\Filliere
+     */
+    public function getFilliere()
+    {
+        return $this->filliere;
+    }
+}

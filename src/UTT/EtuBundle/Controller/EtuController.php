@@ -24,6 +24,17 @@ class EtuController extends Controller
         $etudiant = new Etudiant();
         $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);
 
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($etudiant);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            return $this->redirectToRoute('utt_etu_view', array('idetu' => $etudiant->getIdEtudiant()));
+        }
+
+
 
         return $this->render('UTTEtuBundle:Etu:add.html.twig',array(
             'form' => $form->createView(),
