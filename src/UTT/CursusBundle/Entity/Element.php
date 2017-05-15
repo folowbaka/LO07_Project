@@ -36,6 +36,25 @@ class Element
     private $semLabel;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="sigle",type="string",length=255)
+     */
+    private $sigle;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Categorie")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Affectation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $affectation;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="utt", type="boolean")
@@ -49,12 +68,6 @@ class Element
      */
     private $profil;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="affectation", type="string", length=255)
-     */
-    private $affectation;
 
     /**
      * @var int
@@ -247,5 +260,53 @@ class Element
     public function getResulat()
     {
         return $this->resulat;
+    }
+
+    /**
+     * Set sigle
+     *
+     * @param string $sigle
+     *
+     * @return Element
+     */
+    public function setSigle($sigle)
+    {
+        $this->sigle = $sigle;
+
+        return $this;
+    }
+
+    /**
+     * Get sigle
+     *
+     * @return string
+     */
+    public function getSigle()
+    {
+        return $this->sigle;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \UTT\CursusBundle\Entity\Categorie $categorie
+     *
+     * @return Element
+     */
+    public function setCategorie(\UTT\CursusBundle\Entity\Categorie $categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \UTT\CursusBundle\Entity\Categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }
