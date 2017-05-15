@@ -5,12 +5,12 @@ namespace UTT\EtuBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Filliere
+ * Admission
  *
- * @ORM\Table(name="filliere")
- * @ORM\Entity(repositoryClass="UTT\EtuBundle\Repository\FilliereRepository")
+ * @ORM\Table(name="admission")
+ * @ORM\Entity(repositoryClass="UTT\EtuBundle\Repository\AdmissionRepository")
  */
-class Filliere
+class Admission
 {
     /**
      * @var int
@@ -44,7 +44,7 @@ class Filliere
      *
      * @param string $nom
      *
-     * @return Filliere
+     * @return Admission
      */
     public function setNom($nom)
     {
@@ -63,3 +63,4 @@ class Filliere
         return $this->nom;
     }
 }
+
