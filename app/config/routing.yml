@@ -1,6 +1,6 @@
 utt_cursus:
     resource: "@UTTCursusBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /cursus
 
 utt_core:
     resource: "@UTTCoreBundle/Resources/config/routing.yml"

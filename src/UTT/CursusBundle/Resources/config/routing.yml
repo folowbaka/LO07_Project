@@ -1,3 +1,6 @@
 utt_cursus_homepage:
     path:     /
-    defaults: { _controller: UTTCursusBundle:Default:index }
+    defaults: { _controller: UTTCursusBundle:Cursus:index }
+utt_cursus_add:
+    path:     /AjouterCursus
+    defaults: { _controller: UTTCursusBundle:Cursus:add }
