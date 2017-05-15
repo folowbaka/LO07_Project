@@ -1,6 +1,6 @@
 <?php
 
-namespace UTT\EtuBundle\Entity;
+namespace UTT\CursusBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Element
  *
  * @ORM\Table(name="element")
- * @ORM\Entity(repositoryClass="UTT\EtuBundle\Repository\ElementRepository")
+ * @ORM\Entity(repositoryClass="UTT\CursusBundle\Repository\ElementRepository")
  */
 class Element
 {

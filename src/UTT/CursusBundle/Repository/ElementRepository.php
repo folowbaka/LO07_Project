@@ -1,6 +1,6 @@
 <?php
 
-namespace UTT\EtuBundle\Repository;
+namespace UTT\CursusBundle\Repository;
 
 /**
  * ElementRepository
