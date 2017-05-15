@@ -1,0 +1,3 @@
+utt_cursus_homepage:
+    path:     /
+    defaults: { _controller: UTTCursusBundle:Default:index }
