@@ -82,9 +82,38 @@ class Element
      * @ORM\Column(name="resulat", type="string", length=255)
      */
     private $resulat;
+        
+    /**
+     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Cursus")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $cursus;
+    
+    /**
+     * Set cursus
+     *
+     * @param \UTT\CursusBundle\Entity\Cursus $cursus
+     *
+     * @return Element
+     */
+    public function setCursus(\UTT\CursusBundle\Entity\Cursus $cursus)
+    {
+        $this->cursus = $cursus;
 
+        return $this;
+    }
 
     /**
+     * Get cursus
+     *
+     * @return \UTT\CursusBundle\Entity\Cursus
+     */
+    public function getCursus()
+    {
+        return $this->cursus;
+    }
+
+        /**
      * Get id
      *
      * @return int
