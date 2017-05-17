@@ -2,7 +2,9 @@
 
 namespace UTT\CursusBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use UTT\EtuBundle\Entity\Etudiant;
 
 /**
  * Cursus
@@ -24,41 +26,45 @@ class Cursus
     /**
      * @var string
      *
-     * @ORM\Column(name="etiquette", type="string", length=255)
+     * @ORM\Column(name="label", type="string", length=255, unique=true)
      */
-    private $etiquette;
-    
+    private $label;
+
     /**
-     * @ORM\ManyToOne(targetEntity="UTT\EtuBundle\Entity\Etudiant")
-     * @ORM\JoinColumn(referencedColumnName="idEtudiant")
+     * @var ArrayCollection
+     * 
+     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Element", mappedBy="cursus")
+     */
+    private $element;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="UTT\EtuBundle\Entity\Etudiant", inversedBy="cursus")
+     * @ORM\JoinColumn(referencedColumnName="idetudiant",nullable=false)
      */
     private $etudiant;
-    
-    /**
-     * Set etudiant
-     *
-     * @param \UTT\EtuBundle\Entity\Etudiant $etudiant
-     *
-     * @return Cursus
-     */
-    public function setEtudiant(\UTT\EtuBundle\Entity\Etudiant $etudiant)
-    {
-        $this->etudiant = $etudiant;
-
-        return $this;
-    }
 
     /**
-     * Get etudiant
-     *
-     * @return \UTT\EtuBundle\Entity\Etudiant
+     * Cursus constructor.
      */
-    public function getEtudiant()
+    public function __construct()
     {
-        return $this->etudiant;
+        $this->element=new ArrayCollection();
+    }
+    public function addElement(Element $element)
+    {
+        // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+        $this->element[] = $element;
     }
 
+    public function removeElement(Element $element)
+    {
+        $this->element->removeElement($element);
+    }
 
+    public function getElements()
+    {
+        return $this->element;
+    }
     /**
      * Get id
      *
@@ -70,27 +76,74 @@ class Cursus
     }
 
     /**
-     * Set etiquette
+     * Set label
      *
-     * @param string $etiquette
+     * @param string $label
      *
      * @return Cursus
      */
-    public function setEtiquette($etiquette)
+    public function setLabel($label)
     {
-        $this->etiquette = $etiquette;
+        $this->label = $label;
 
         return $this;
     }
 
     /**
-     * Get etiquette
+     * Get label
      *
      * @return string
      */
-    public function getEtiquette()
+    public function getLabel()
     {
-        return $this->etiquette;
+        return $this->label;
+    }
+
+    /**
+     * Get etudiant
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEtudiant()
+    {
+        return $this->etudiant;
+    }
+
+    /**
+     * Set etudiant
+     *
+     * @param \UTT\EtuBundle\Entity\Etudiantt $etudiant
+     *
+     * @return Cursus
+     */
+    public function setEtudiant(\UTT\EtuBundle\Entity\Etudiantt $etudiant)
+    {
+        $this->etudiant = $etudiant;
+
+        return $this;
+    }
+
+    /**
+     * Set element
+     *
+     * @param \UTT\CursusBundle\Entity\Element $element
+     *
+     * @return Cursus
+     */
+    public function setElement(\UTT\CursusBundle\Entity\Element $element)
+    {
+        $this->element = $element;
+
+        return $this;
+    }
+
+    /**
+     * Get element
+     *
+     * @return \UTT\CursusBundle\Entity\Element
+     */
+    public function getElement()
+    {
+        return $this->element;
     }
 }
-

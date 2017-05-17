@@ -3,6 +3,8 @@
 namespace UTT\EtuBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use UTT\CursusBundle\Entity\Cursus;
 
 /**
  * Etudiant
@@ -46,7 +48,20 @@ class Etudiant
      */
     private $filliere;
 
-     /**
+    /**
+     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Cursus", mappedBy="etudiant")
+     */
+    private $cursus;
+
+    /**
+     * Etudiant constructor.
+     */
+    public function __construct()
+    {
+        $this->cursus=new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -157,4 +172,20 @@ class Etudiant
     {
         return $this->filliere;
     }
+
+    public function addCursus(Cursus $cursus)
+    {
+        $this->cursus[] = $cursus;
+    }
+
+    public function removeCursus(Cursus $cursus)
+    {
+        $this->cursus->removeElement($cursus);
+    }
+
+    public function getCursus()
+    {
+        return $this->applications;
+    }
+
 }

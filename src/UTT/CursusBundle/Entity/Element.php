@@ -84,7 +84,7 @@ class Element
     private $resulat;
         
     /**
-     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Cursus")
+     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Cursus",inversedBy="elements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cursus;
