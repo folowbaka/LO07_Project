@@ -35,7 +35,7 @@ class Cursus
      * 
      * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Element", mappedBy="cursus")
      */
-    private $element;
+    private $elements;
 
     /**
      * @ORM\ManyToOne(targetEntity="UTT\EtuBundle\Entity\Etudiant", inversedBy="cursus")
@@ -48,22 +48,22 @@ class Cursus
      */
     public function __construct()
     {
-        $this->element=new ArrayCollection();
+        $this->elements=new ArrayCollection();
     }
-    public function addElement(Element $element)
+    public function addElement(Element $elements)
     {
         // Ici, on utilise l'ArrayCollection vraiment comme un tableau
-        $this->element[] = $element;
+        $this->elements[] = $elements;
     }
 
-    public function removeElement(Element $element)
+    public function removeElement(Element $elements)
     {
-        $this->element->removeElement($element);
+        $this->elements->removeElement($elements);
     }
 
     public function getElements()
     {
-        return $this->element;
+        return $this->elements;
     }
     /**
      * Get id
