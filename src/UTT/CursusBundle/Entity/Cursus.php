@@ -122,28 +122,4 @@ class Cursus
 
         return $this;
     }
-
-    /**
-     * Set element
-     *
-     * @param \UTT\CursusBundle\Entity\Element $element
-     *
-     * @return Cursus
-     */
-    public function setElement(\UTT\CursusBundle\Entity\Element $element)
-    {
-        $this->element = $element;
-
-        return $this;
-    }
-
-    /**
-     * Get element
-     *
-     * @return \UTT\CursusBundle\Entity\Element
-     */
-    public function getElement()
-    {
-        return $this->element;
-    }
 }

@@ -9,8 +9,3 @@ utt_core:
 utt_etu:
     resource: "@UTTEtuBundle/Resources/config/routing.yml"
     prefix:   /etudiant
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
-    prefix: /

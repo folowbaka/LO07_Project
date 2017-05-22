@@ -37,7 +37,7 @@ class EtuController extends Controller
 
 
         return $this->render('UTTEtuBundle:Etu:add.html.twig',array(
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ));
     }
 }
