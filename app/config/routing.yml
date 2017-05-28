@@ -1,3 +1,7 @@
+uttcsv:
+    resource: "@UTTCSVBundle/Resources/config/routing.yml"
+    prefix:   /csv
+
 utt_cursus:
     resource: "@UTTCursusBundle/Resources/config/routing.yml"
     prefix:   /cursus

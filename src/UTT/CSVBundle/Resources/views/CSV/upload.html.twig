@@ -1,0 +1,12 @@
+{% block csv_body %}
+
+    <h2>Import CSV</h2>
+    <div class="well">
+    {{ form_start(form) }}
+    <div class="form-group">{{ form_row(form.file, {'attr':{'class':'form-control'}}) }}</div>
+     <button type="submit" class="btn btn-primary">Valider</button>
+    <button type="reset" class="btn btn-default">Reset</button>
+    
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+utt_csv_homepage:
+    path:     /
+    defaults: { _controller: UTTCSVBundle:CSV:index }
+    
+utt_csv_upload:
+    path:     /ImportCSV
+    defaults: { _controller: UTTCSVBundle:CSV:upload }
+    
+utt_csv_view:
+    path:     /ImportCSV
+    defaults: { _controller: UTTCSVBundle:CSV:upload }
