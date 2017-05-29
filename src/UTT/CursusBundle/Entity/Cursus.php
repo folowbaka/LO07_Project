@@ -4,7 +4,7 @@ namespace UTT\CursusBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use UTT\EtuBundle\Entity\Etudiant;
+use UTT\EtuBundle\Entity;
 
 /**
  * Cursus
