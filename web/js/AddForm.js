@@ -16,10 +16,13 @@ AddForm.prototype.addDynamicElement=function()
         // - le texte "__name__label__" qu'il contient par le label du champ
         // - le texte "__name__" qu'il contient par le numéro du champ
         this._template=this._$container.attr('data-prototype')
-            .replace(/__name__label__/g, 'Element n°' + (this.index+1))
-            .replace(/__name__/g,        this.index);
+            .replace(/__name__label__/g, 'Element n°' + (this._index+1))
+            .replace(/__name__/g,        this._index);
         // On crée un objet jquery qui contient ce template
         this._$prototype= $(this._template);
+        this._$prototype.find('div>div').toggleClass("form-group");
+        this._$prototype.find('div>div').children("*:not(label,:checkbox)").toggleClass("form-control");
+        this._$prototype.find(':checkbox').toggleClass("checkbox");
         // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
         this.addDeleteLink(this._$prototype);
 

@@ -13,7 +13,7 @@ class ElementType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('semSeq')->add('semLabel')->add('sigle')->add('utt')->add('profil')->add('credit')->add('resulat');
+        $builder->add('semSeq')->add('semLabel')->add('sigle')->add('utt')->add('profil')->add('credit')->add('resultat');
     }
     
     /**

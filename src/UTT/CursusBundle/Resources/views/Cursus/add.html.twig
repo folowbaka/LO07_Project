@@ -13,8 +13,9 @@
                 <label for="nomprenom">Prenom Nom :</label>
                 <input type="text" class="form-control" id="nomprenom" disabled="disabled">
             </div>
+        {{ form_row(form.elements)}}
 
-        {{ form_row(form.elements) }}
+        </div>
         <a href="#" id="add_element" class="btn btn-default">Ajouter un élement de cursus</a>
         <button type="submit" class="btn btn-primary">Valider</button>
         <button type="reset" class="btn btn-default">Reset</button>

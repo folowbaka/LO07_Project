@@ -81,7 +81,7 @@ class Element
      *
      * @ORM\Column(name="resulat", type="string", length=255)
      */
-    private $resulat;
+    private $resultat;
         
     /**
      * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Cursus",inversedBy="elements")
@@ -266,31 +266,7 @@ class Element
     {
         return $this->credit;
     }
-
-    /**
-     * Set resulat
-     *
-     * @param string $resulat
-     *
-     * @return Element
-     */
-    public function setResulat($resulat)
-    {
-        $this->resulat = $resulat;
-
-        return $this;
-    }
-
-    /**
-     * Get resulat
-     *
-     * @return string
-     */
-    public function getResulat()
-    {
-        return $this->resulat;
-    }
-
+    
     /**
      * Set sigle
      *
@@ -337,5 +313,29 @@ class Element
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set resultat
+     *
+     * @param string $resultat
+     *
+     * @return Element
+     */
+    public function setResultat($resultat)
+    {
+        $this->resultat = $resultat;
+
+        return $this;
+    }
+
+    /**
+     * Get resultat
+     *
+     * @return string
+     */
+    public function getResultat()
+    {
+        return $this->resultat;
     }
 }
