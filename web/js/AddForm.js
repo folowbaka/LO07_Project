@@ -20,9 +20,6 @@ AddForm.prototype.addDynamicElement=function()
             .replace(/__name__/g,        this._index);
         // On crée un objet jquery qui contient ce template
         this._$prototype= $(this._template);
-        this._$prototype.find('div>div').toggleClass("form-group");
-        this._$prototype.find('div>div').children("*:not(label,:checkbox)").toggleClass("form-control");
-        this._$prototype.find(':checkbox').toggleClass("checkbox");
         // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
         this.addDeleteLink(this._$prototype);
 

@@ -1,0 +1,44 @@
+
+{%- block form_widget_simple -%}
+
+    {%- set type = type|default('text') -%}
+
+    <input type="{{ type }}" class="form-control"{{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+
+{%- endblock form_widget_simple -%}
+
+{%- block form_row -%}
+
+    <div class="form-group">
+
+        {{- form_label(form) -}}
+
+        {{- form_errors(form) -}}
+
+        {{- form_widget(form) -}}
+
+    </div>
+
+{%- endblock form_row -%}
+
+{%- block checkbox_row -%}
+    {%- if label_format is not empty -%}
+
+        {% set label = label_format|replace({
+
+        '%name%': name,
+
+        '%id%': id,
+
+        }) %}
+
+    {%- else -%}
+
+        {% set label = name|humanize %}
+
+    {%- endif -%}
+
+        <div class="checkbox">
+            <label><input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}>{{ label }}</label>
+        </div>
+{%- endblock checkbox_row -%}
