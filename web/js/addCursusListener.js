@@ -5,7 +5,6 @@
 $(document).ready(function()
 {
     var $container=$('div#utt_cursusbundle_cursus_elements');
-    console.log($container);
     var addForm=new AddForm($container);
 
     $('#add_element').click(function(e) {

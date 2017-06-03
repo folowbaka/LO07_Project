@@ -29,9 +29,9 @@ class Element
     private $semSeq;
 
     /**
-     * @var string
      *
-     * @ORM\Column(name="sem_label", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\SemLabel")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $semLabel;
 
@@ -62,9 +62,9 @@ class Element
     private $utt;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="profil", type="string", length=255)
+     * @ORM\Column(name="profil", type="boolean", length=255)
      */
     private $profil;
 
@@ -147,29 +147,6 @@ class Element
         return $this->semSeq;
     }
 
-    /**
-     * Set semLabel
-     *
-     * @param string $semLabel
-     *
-     * @return Element
-     */
-    public function setSemLabel($semLabel)
-    {
-        $this->semLabel = $semLabel;
-
-        return $this;
-    }
-
-    /**
-     * Get semLabel
-     *
-     * @return string
-     */
-    public function getSemLabel()
-    {
-        return $this->semLabel;
-    }
 
     /**
      * Set utt
@@ -337,5 +314,29 @@ class Element
     public function getResultat()
     {
         return $this->resultat;
+    }
+
+    /**
+     * Set semLabel
+     *
+     * @param \UTT\CursusBundle\Entity\SemLabel $semLabel
+     *
+     * @return Element
+     */
+    public function setSemLabel(\UTT\CursusBundle\Entity\SemLabel $semLabel)
+    {
+        $this->semLabel = $semLabel;
+
+        return $this;
+    }
+
+    /**
+     * Get semLabel
+     *
+     * @return \UTT\CursusBundle\Entity\SemLabel
+     */
+    public function getSemLabel()
+    {
+        return $this->semLabel;
     }
 }

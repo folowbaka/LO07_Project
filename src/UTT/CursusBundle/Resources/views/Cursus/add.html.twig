@@ -1,5 +1,12 @@
-{% extends "UTTCursusBundle::layout.html.twig" %}
 
+{% extends "UTTCursusBundle::layout.html.twig" %}
+ {% block stylesheets %}
+     {# On charge le CSS de bootstrap depuis le site directement #}
+      {{ parent() }}
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"/>
+     <link rel="stylesheet" href="{{ asset('css/addCursusStyle.css') }}"/>
+
+ {% endblock %}
 
 {% block etu_body %}
     {% form_theme form 'UTTCoreBundle::fields.html.twig' %}
@@ -18,7 +25,7 @@
 
         </div>
         <a href="#" id="add_element" class="btn btn-default">Ajouter un élement de cursus</a>
-        <button type="submit" class="btn btn-primary">Valider</button>
+        <button type="submit" class="btn btn-primary" id="bite">Valider</button>
         <button type="reset" class="btn btn-default">Reset</button>
         {{ form_end(form) }}
 
@@ -29,4 +36,5 @@
     {{ parent() }}
     <script src="{{ asset('js/addCursusListener.js') }}"></script>
     <script src="{{ asset('js/AddForm.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 {% endblock %}
