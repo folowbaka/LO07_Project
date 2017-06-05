@@ -14,6 +14,17 @@ class CursusController extends Controller
         $form   = $this->get('form.factory')->create(CursusType::class, $cursus);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+
+            $idetu=$_POST["idetu"];
+            $repositoryEtudiant = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('UTTEtuBundle:Etudiant')
+            ;
+            $etudiant=$repositoryEtudiant->find($idetu);
+            $label=$etudiant->getPrenom().$etudiant->getNom().$etudiant->getIdEtudiant().(count($etudiant->getCursus())+1);
+            $cursus->setLabel($label);
+            $cursus->setEtudiant($etudiant);
             $em = $this->getDoctrine()->getManager();
             $em->persist($cursus);
             $em->flush();

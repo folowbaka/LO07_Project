@@ -33,7 +33,7 @@ class Cursus
     /**
      * @var ArrayCollection
      * 
-     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Element", mappedBy="cursus")
+     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Element", mappedBy="cursus",cascade={"persist"})
      */
     private $elements;
 
@@ -54,6 +54,7 @@ class Cursus
     {
         // Ici, on utilise l'ArrayCollection vraiment comme un tableau
         $this->elements[] = $elements;
+        $elements->setCursus($this);
     }
 
     public function removeElement(Element $elements)
@@ -116,7 +117,7 @@ class Cursus
      *
      * @return Cursus
      */
-    public function setEtudiant(\UTT\EtuBundle\Entity\Etudiantt $etudiant)
+    public function setEtudiant(\UTT\EtuBundle\Entity\Etudiant $etudiant)
     {
         $this->etudiant = $etudiant;
 

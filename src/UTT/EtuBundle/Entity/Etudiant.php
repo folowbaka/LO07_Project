@@ -49,7 +49,7 @@ class Etudiant
     private $filliere;
 
     /**
-     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Cursus", mappedBy="etudiant")
+     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Cursus",cascade={"persist"}, mappedBy="etudiant")
      */
     private $cursus;
 
@@ -185,7 +185,7 @@ class Etudiant
 
     public function getCursus()
     {
-        return $this->applications;
+        return $this->cursus;
     }
 
 }

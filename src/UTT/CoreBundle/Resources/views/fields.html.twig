@@ -4,6 +4,12 @@
     {{ dump() }}
 {% endblock %}
 #}
+{% block _utt_cursusbundle_cursus_elements_entry_semSeq_widget %}
+
+    {%- set type = type|default('number') -%}
+
+    <input type="{{ type }}" class="form-control semSeqInput"{{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+{% endblock %}
 {%- block form_widget_simple -%}
 
     {%- set type = type|default('text') -%}

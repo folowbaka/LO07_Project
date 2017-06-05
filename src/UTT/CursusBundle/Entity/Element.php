@@ -77,14 +77,13 @@ class Element
     private $credit;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="resulat", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Resultat")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $resultat;
         
     /**
-     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Cursus",inversedBy="elements")
+     * @ORM\ManyToOne(targetEntity="UTT\CursusBundle\Entity\Cursus",inversedBy="elements",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $cursus;

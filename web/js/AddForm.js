@@ -5,7 +5,8 @@
 var AddForm=function($container)
 {
     this._$container=$container;
-    this._index=this._$container.find(':input').length;
+    this._index=0;
+
 
 
 }
@@ -21,11 +22,12 @@ AddForm.prototype.addDynamicElement=function()
         // On crée un objet jquery qui contient ce template
         this._$prototype= $(this._template);
         // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
-        this.addDeleteLink(this._$prototype);
-
+        $(this._$prototype).find('.selectpicker').selectpicker({
+        });
+        this._$prototype.find('.semSeqInput').val(this._index+1);
         // On ajoute le prototype modifié à la fin de la balise <div>
         this._$container.append(this._$prototype);
-
+        this.addDeleteLink();
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
             this._index++;
     }
@@ -39,9 +41,14 @@ AddForm.prototype.addDeleteLink=function ()
 
     // Ajout du listener sur le clic du lien pour effectivement supprimer la catégoriea
         var addform=this;
+        var $proto=this._$prototype;
     $deleteLink.click(function (e) {
-        addform._$prototype.remove();
-
+        console.log($proto.prop('outerHTML'));
+        $proto.remove();
+        console.log(addform._index);
+        console.log("bite");
+        if(addform._index>1)
+            addform._index--;
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
     });
