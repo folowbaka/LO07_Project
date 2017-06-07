@@ -14,7 +14,7 @@
 </head>
 
 <body>
- <nav class="navbar navbar-default navbar-fixed-top">
+ <nav class="navbar navbar-defaul navbarTop" id="navbarTop">
     <div class="container-fluid text-center">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header col-lg-1">
@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="#">LO07</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,28 +33,30 @@
             <li class="dropdown col-lg-2">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Etudiant <span class="caret"></span></a>
                 <ul class="dropdown-menu dropMenuNav">
-                    <li class="text-center"><a href="#">Liste Etudiant</a></li>
-                    <li class="text-center"><a href="#">Ajouter Etudiant</a></li>
+                    <li class="text-center"><a href="{{ path('utt_etu_homepage') }}">Liste Etudiant</a></li>
+                    <li class="text-center"><a href="{{ path('utt_etu_add') }}">Ajouter Etudiant</a></li>
                 </ul>
             </li>
-            <li class="col-lg-2"><a href="#">Ajouter Cursus</a></li>
+            <li class="col-lg-2"><a href="{{ path('utt_cursus_add') }}">Ajouter Cursus</a></li>
             <li class="col-lg-2"><a href="#">Réglement</a></li>
         </ul>
       </div><!-- /.navbar-c1ollapse -->
         <div class="col-lg-1"></div>
     </div><!-- /.container-fluid -->
   </nav>
- <div class="container">
+ <div class="container" id="corePage">
 {% block body %}
 {% endblock %}
 </div>
  <footer>
      <div class="footer">
          <div class="row">
+             <p>blabla</p>
          </div>
      </div>
      <div class="nanofooter">
          <div class="row">
+             <p>blabla</p>
          </div>
      </div>
  </footer>

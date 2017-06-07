@@ -9,11 +9,12 @@
 namespace UTT\EtuBundle\DataFixtures\ORM;
 
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use UTT\EtuBundle\Entity\Filliere;
 
-class LoadFilliere implements FixtureInterface
+class LoadFilliere extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -31,7 +32,12 @@ class LoadFilliere implements FixtureInterface
 
             // On la persiste
             $manager->persist($filliere);
+            $this->addReference($filliere->getNom(), $filliere);
         }
         $manager->flush();
+    }
+    public function getOrder()
+    {
+        return 1;
     }
 }

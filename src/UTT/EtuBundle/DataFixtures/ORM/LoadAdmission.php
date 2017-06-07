@@ -1,11 +1,12 @@
 <?php
 namespace UTT\EtuBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use UTT\EtuBundle\Entity\Admission;
 
-class LoadAdmission implements FixtureInterface
+class LoadAdmission extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -20,8 +21,13 @@ class LoadAdmission implements FixtureInterface
 
             // On la persiste
             $manager->persist($admission);
+            $this->addReference($admission->getNom(), $admission);
         }
         $manager->flush();
     }
 
+    public function getOrder()
+    {
+        return 2;
+    }
 }

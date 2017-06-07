@@ -17,7 +17,13 @@ class EtuController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('UTTEtuBundle:Etu:index.html.twig');
+        $repositoryEtudiant = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTEtuBundle:Etudiant')
+        ;
+        $etudiants=$repositoryEtudiant->findBy([],array('nom'=>'ASC'),5,0);
+        return $this->render('UTTEtuBundle:Etu:index.html.twig',array('etudiants'=>$etudiants));
     }
     public function addAction(Request $request)
     {
