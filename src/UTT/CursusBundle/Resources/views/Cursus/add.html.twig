@@ -11,7 +11,7 @@
 {% block etu_body %}
     {% form_theme form 'UTTCoreBundle::fields.html.twig' %}
     <h2 >Ajouter Cursus</h2>
-    <div class="well col-lg-12">
+    <div class="formulaire col-lg-12">
         {{ form_start(form, {'attr': {'class': 'col-lg-12'}}) }}
             <div class="form-group col-lg-6">
                 <label for="idetu">Id Etudiant :</label>
@@ -23,12 +23,11 @@
             </div>
         {{ form_row(form.elements)}}
 
-        </div>
         <a href="#" id="add_element" class="btn btn-default">Ajouter un élement de cursus</a>
         <button type="submit" class="btn btn-primary" id="bite">Valider</button>
         <button type="reset" class="btn btn-default">Reset</button>
         {{ form_end(form) }}
-
+    </div>
     </div>
 {% endblock %}
 
