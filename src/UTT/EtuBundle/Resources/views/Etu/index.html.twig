@@ -1,6 +1,11 @@
 {% extends "UTTEtuBundle::layout.html.twig" %}
 
+{% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/listeEtu.css') }}"/>
 
+{% endblock %}
 {% block etu_body %}
 
     <h2>Liste Etudiants</h2>
@@ -11,10 +16,16 @@
             <th>Prenom</th>
         </tr>
         {% for etudiant in etudiants %}
-            <tr><td>{{ etudiant.nom }}</td><td>{{ etudiant.prenom }}</td></tr>
+            <tr class="lineEtu"><td class="idLineEtu">{{ etudiant.idetudiant }}</td><td>{{ etudiant.nom }}</td><td>{{ etudiant.prenom }}</td></tr>
             {% endfor %}
     </table>
 
 
 
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("js/listeEtu.js") }}"></script>
 {% endblock %}
