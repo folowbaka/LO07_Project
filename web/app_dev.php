@@ -1,5 +1,5 @@
 <?php
-
+ini_set("auto_detect_line_endings", true);
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
 

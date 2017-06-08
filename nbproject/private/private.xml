@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Repository/CSVRepository.php</file>
+            <file>file:/C:/wamp/www/LO07_Project/src/UTT/EtuBundle/Resources/views/Etu/add.html.twig</file>
             <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Form/CSVType.php</file>
-            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Utils/DirectoryNamer.php</file>
-            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Tests/Controller/DefaultControllerTest.php</file>
+            <file>file:/C:/wamp/www/LO07_Project/web/app_dev.php</file>
+            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CursusBundle/Controller/CursusController.php</file>
             <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Controller/CSVController.php</file>
-            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Entity/CSV.php</file>
-            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Resources/config/services.yml</file>
+            <file>file:/C:/wamp/www/LO07_Project/web/app.php</file>
             <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Resources/config/routing.yml</file>
-            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/DependencyInjection/Configuration.php</file>
-            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/EventListener/FileSavingListener.php</file>
+            <file>file:/C:/wamp/www/LO07_Project/src/UTT/CSVBundle/Resources/views/CSV/upload.html.twig</file>
         </group>
     </open-files>
 </project-private>
