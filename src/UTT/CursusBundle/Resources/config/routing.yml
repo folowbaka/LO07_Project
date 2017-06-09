@@ -4,3 +4,4 @@ utt_cursus_homepage:
 utt_cursus_add:
     path:     /AjouterCursus
     defaults: { _controller: UTTCursusBundle:Cursus:add }
+

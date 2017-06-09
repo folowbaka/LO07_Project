@@ -3,10 +3,10 @@
  */
 $(document).ready(function()
 {
-
     $('.lineEtu').click(function(e) {
 
-        console.log($(this).children('.idLineEtu').text());
+        var idEtu=$(this).children('.idLineEtu').text();
+        window.location.href = window.location.href+idEtu;
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
     });

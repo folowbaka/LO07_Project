@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by david on 22/05/2017.
  */
 
@@ -43,12 +43,13 @@ AddForm.prototype.addDeleteLink=function ()
         var addform=this;
         var $proto=this._$prototype;
     $deleteLink.click(function (e) {
-        console.log($proto.prop('outerHTML'));
-        $proto.remove();
+        if(addform._index>1)
+        {
+            addform._index--;
+            $proto.remove();
+        }
         console.log(addform._index);
         console.log("bite");
-        if(addform._index>1)
-            addform._index--;
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
     });

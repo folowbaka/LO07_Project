@@ -4,7 +4,8 @@ utt_etu_homepage:
 utt_etu_add:
         path:     /AjouterEtudiant
         defaults: { _controller: UTTEtuBundle:Etu:add }
-        
 utt_etu_view:
-    path : /AjouterEtudiant
-    defaults: {_controller: UTTEtuBundle:Etu:add}
+    path:      /{id}
+    defaults: { _controller: UTTEtuBundle:Etu:view }
+    requirements:
+           id: '\d+'

@@ -46,4 +46,18 @@ class EtuController extends Controller
             'form' => $form->createView()
         ));
     }
+    public function viewAction($id)
+    {
+        $repositoryEtudiant = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTEtuBundle:Etudiant')
+        ;
+        $etudiant=$repositoryEtudiant->find($id);
+
+
+
+
+        return $this->render('UTTEtuBundle:Etu:view.html.twig');
+    }
 }
