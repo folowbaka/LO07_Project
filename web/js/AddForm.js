@@ -24,7 +24,6 @@ AddForm.prototype.addDynamicElement=function()
         // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
         $(this._$prototype).find('.selectpicker').selectpicker({
         });
-        this._$prototype.find('.semSeqInput').val(this._index+1);
         // On ajoute le prototype modifié à la fin de la balise <div>
         this._$container.append(this._$prototype);
         this.addDeleteLink();
