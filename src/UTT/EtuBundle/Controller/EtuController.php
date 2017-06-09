@@ -54,10 +54,11 @@ class EtuController extends Controller
             ->getRepository('UTTEtuBundle:Etudiant')
         ;
         $etudiant=$repositoryEtudiant->find($id);
+        $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);
 
 
 
 
-        return $this->render('UTTEtuBundle:Etu:view.html.twig');
+        return $this->render('UTTEtuBundle:Etu:view.html.twig',array('form'=>$form->createView()));
     }
 }
