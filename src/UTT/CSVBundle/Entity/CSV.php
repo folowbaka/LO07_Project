@@ -4,6 +4,7 @@ namespace UTT\CSVBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * CSV
@@ -21,8 +22,9 @@ class CSV
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    private $file;
+    /* * @Assert\File( maxSize = "100000000", mimeTypes= {"text/csv"}, mimeTypesMessage = "Please upload a valid CSV")
+    */
+            private $file;
 
 
     /**
