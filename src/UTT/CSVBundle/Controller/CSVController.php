@@ -51,12 +51,10 @@ class CSVController extends Controller
             ->getRepository('UTTCursusBundle:Categorie');
         
         $em = $this->getDoctrine()->getManager();
-        $csv= new CSV();
-        $form   = $this->get('form.factory')->create(CSVType::class, $csv);
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {            
-            $data=$form['file']->getData();
+        if ($request->isMethod('POST'))
+        {
             $donnee= null;
-            $file=  fopen($data->getrealpath(), "r");
+            $file= fopen($_FILES['file']['tmp_name'], "r");
             while (($donnee_ligne = fgetcsv($file, 1000, ";")) !== FALSE)
                     {
                         $donnee[] = $donnee_ligne;
@@ -89,8 +87,10 @@ class CSVController extends Controller
                  }
                  
                  $cursus=new Cursus();
-                      $i=6;
-                      while($donnee[$i][0]==="EL")
+                 $i=6;
+                 $bite=array();
+                 $kaka=array();
+                 while($donnee[$i][0]==="EL")
                       {
                           $element=array();
                           for($k=1;$k<=9;$k++)
@@ -123,25 +123,17 @@ class CSVController extends Controller
                              $elementobjet->setUtt('0');
                           }
                           $cursus->addElement($elementobjet);
-                       $i++;   
+                          $i++;
+
                       }
-                      $cursus->setEtudiant($etudiantobjet);
-                      $label=$etudiantobjet->getPrenom().$etudiantobjet->getNom().$etudiantobjet->getIdEtudiant().(count($etudiantobjet->getCursus())+1);
-                      $cursus->setLabel($label);
-                      $em->persist($cursus);
-                      $em->flush();
-                      
-                     
-                     }
+                $cursus->setEtudiant($etudiantobjet);
+                $label=$etudiantobjet->getPrenom().$etudiantobjet->getNom()."-".$etudiantobjet->getIdEtudiant()." : ".(count($etudiantobjet->getCursus())+1);
+                $cursus->setLabel($label);
+                $em->persist($cursus);
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+                return $this->redirectToRoute('utt_etu_view',array('id'=>$etudiantobjet->getIdEtudiant()));
             }
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-            //return $this->redirectToRoute('utt_csv_view',array('idcsv'=>$csv->getId()));
-        
-        
-
-
-
-        return $this->render('UTTCSVBundle:CSV:upload.html.twig',array('form' => $form->createView()
-        ));           
+        }
         }
 }

@@ -46,6 +46,13 @@
   </nav>
  <div class="container" id="corePage">
 {% block body %}
+    {% block topbody %}
+    {% endblock %}
+    <div class="coreBody col-lg-12">
+    {% block corebody %}
+
+    {% endblock %}
+    </div>
 {% endblock %}
 </div>
  <footer class="footer">

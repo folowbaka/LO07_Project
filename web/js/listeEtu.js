@@ -3,6 +3,7 @@
  */
 $(document).ready(function()
 {
+
     $('.lineEtu').click(function(e) {
 
         var idEtu=$(this).children('.idLineEtu').text();
@@ -10,7 +11,7 @@ $(document).ready(function()
         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
         return false;
     });
-
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-
+    $('#file').on('change',function(e) {
+        $('#formImport').submit();
+    });
 });
