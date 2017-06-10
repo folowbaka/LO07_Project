@@ -10,4 +10,14 @@ namespace UTT\CursusBundle\Repository;
  */
 class ElementRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findSemesterCursus($id)
+    {
+        $query = $this->_em->createQuery('SELECT Distinct s.nom FROM UTTCursusBundle:Element e JOIN e.semLabel s WHERE e.cursus=:id ');
+        $query->setParameter('id', $id);
+        $results = $query->getResult();
+
+        return $results;
+
+    }
+
 }

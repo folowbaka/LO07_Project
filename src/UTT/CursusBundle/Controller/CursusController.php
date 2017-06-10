@@ -22,7 +22,7 @@ class CursusController extends Controller
                 ->getRepository('UTTEtuBundle:Etudiant')
             ;
             $etudiant=$repositoryEtudiant->find($idetu);
-            $label=$etudiant->getPrenom().$etudiant->getNom().$etudiant->getIdEtudiant().(count($etudiant->getCursus())+1);
+            $label=$etudiant->getPrenom().$etudiant->getNom()."-".$etudiant->getIdEtudiant()." : ".(count($etudiant->getCursus())+1);
             $cursus->setLabel($label);
             $cursus->setEtudiant($etudiant);
             $em = $this->getDoctrine()->getManager();
@@ -31,7 +31,7 @@ class CursusController extends Controller
 
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
-            return $this->redirectToRoute('utt_cursus_view', array('id' => $cursus->getId()));
+            return $this->redirectToRoute('utt_etu_view', array('id' => $cursus->getId()));
         }
 
 

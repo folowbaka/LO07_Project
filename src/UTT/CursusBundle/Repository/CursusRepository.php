@@ -10,4 +10,5 @@ namespace UTT\CursusBundle\Repository;
  */
 class CursusRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

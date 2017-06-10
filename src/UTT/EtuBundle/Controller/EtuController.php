@@ -55,10 +55,21 @@ class EtuController extends Controller
         ;
         $etudiant=$repositoryEtudiant->find($id);
         $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);
+        $form->remove('idEtudiant');
+        $listeCursus=$etudiant->getCursus();
+        $listeSemester=array();
+        $repositoryElement = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTCursusBundle:Element')
+        ;
+        foreach ($listeCursus as $cursus)
+        {
+            $listeSemester[] = $repositoryElement->findSemesterCursus($cursus->getId());
+        }
 
 
 
-
-        return $this->render('UTTEtuBundle:Etu:view.html.twig',array('form'=>$form->createView()));
+        return $this->render('UTTEtuBundle:Etu:view.html.twig',array('form'=>$form->createView(),'listeCursus'=>$listeCursus,'listeSemester'=>$listeSemester));
     }
 }

@@ -1,0 +1,30 @@
+.labelSemester
+{
+    background: #a66bbe;
+    text-align: center;
+    color: white;
+
+}
+.labelSemester>h3
+{
+    font-weight: bold;
+}
+.labelCursus>h2
+{
+    font-weight: bold;
+    text-align: center;
+}
+.btn-delete-cursus
+{
+
+    background-color: #e74c3c;
+    color: white;
+    font-weight: bold;
+
+}
+.btn-export-cursus
+{
+    background-color: #27ae60;
+    color:white;
+    font-weight: bold;
+}
