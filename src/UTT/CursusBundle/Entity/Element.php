@@ -198,11 +198,11 @@ class Element
     /**
      * Set affectation
      *
-     * @param string $affectation
+     * @param \UTT\CursusBundle\Entity\Affectation $affectation
      *
      * @return Element
      */
-    public function setAffectation($affectation)
+    public function setAffectation(\UTT\CursusBundle\Entity\Affectation $affectation)
     {
         $this->affectation = $affectation;
 
@@ -212,7 +212,7 @@ class Element
     /**
      * Get affectation
      *
-     * @return string
+     * @return \UTT\CursusBundle\Entity\Affectation $affectation
      */
     public function getAffectation()
     {
@@ -294,11 +294,11 @@ class Element
     /**
      * Set resultat
      *
-     * @param string $resultat
+     * @param \UTT\CursusBundle\Entity\Resultat $resultat
      *
      * @return Element
      */
-    public function setResultat($resultat)
+    public function setResultat(\UTT\CursusBundle\Entity\Resultat $resultat)
     {
         $this->resultat = $resultat;
 
@@ -308,7 +308,7 @@ class Element
     /**
      * Get resultat
      *
-     * @return string
+     * @return \UTT\CursusBundle\Entity\Resultat 
      */
     public function getResultat()
     {

@@ -26,7 +26,8 @@ class LoadResultat implements FixtureInterface
             'F',
             'ABS',
             'RES',
-            'ADM    '
+            'ADM',
+            'EQU'
         );
 
         foreach ($names as $name) {

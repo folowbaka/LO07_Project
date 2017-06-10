@@ -25,7 +25,8 @@ class LoadCategorie implements FixtureInterface
             'ST',
             'SE',
             'HP',
-            'NPML'
+            'NPML',
+            'CT',
         );
 
         foreach ($names as $name) {

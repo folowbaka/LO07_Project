@@ -4,7 +4,7 @@ namespace UTT\CursusBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use UTT\EtuBundle\Entity;
+use UTT\EtuBundle\Entity\Etudiant;
 
 /**
  * Cursus
@@ -113,7 +113,7 @@ class Cursus
     /**
      * Set etudiant
      *
-     * @param \UTT\EtuBundle\Entity\Etudiantt $etudiant
+     * @param \UTT\EtuBundle\Entity\Etudiant $etudiant
      *
      * @return Cursus
      */

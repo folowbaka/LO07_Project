@@ -19,7 +19,8 @@ class LoadAffectation implements FixtureInterface
         $names = array(
             'TC',
             'TCBR',
-            'FCBR'
+            'FCBR',
+            'BR'
         );
 
         foreach ($names as $name) {
