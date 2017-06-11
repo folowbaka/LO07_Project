@@ -49,7 +49,7 @@ class Etudiant
     private $filliere;
 
     /**
-     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Cursus",cascade={"persist"}, mappedBy="etudiant")
+     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Cursus",cascade={"persist","remove"}, mappedBy="etudiant")
      */
     private $cursus;
 

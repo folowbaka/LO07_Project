@@ -33,7 +33,7 @@ class Cursus
     /**
      * @var ArrayCollection
      * 
-     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Element", mappedBy="cursus",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="UTT\CursusBundle\Entity\Element", mappedBy="cursus",cascade={"persist","remove"})
      */
     private $elements;
 
