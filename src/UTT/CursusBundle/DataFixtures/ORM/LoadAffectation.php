@@ -20,7 +20,8 @@ class LoadAffectation implements FixtureInterface
             'TC',
             'TCBR',
             'FCBR',
-            'BR'
+            'BR',
+            'UTT'
         );
 
         foreach ($names as $name) {

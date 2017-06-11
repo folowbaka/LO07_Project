@@ -46,7 +46,7 @@ class EtuController extends Controller
             'form' => $form->createView()
         ));
     }
-    public function viewAction($id)
+    public function viewAction($id,Request $request)
     {
         $repositoryEtudiant = $this
             ->getDoctrine()
@@ -56,6 +56,11 @@ class EtuController extends Controller
         $etudiant=$repositoryEtudiant->find($id);
         $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);
         $form->remove('idEtudiant');
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+        }
         $listeCursus=$etudiant->getCursus();
         $listeSemester=array();
         $repositoryElement = $this
@@ -70,6 +75,6 @@ class EtuController extends Controller
 
 
 
-        return $this->render('UTTEtuBundle:Etu:view.html.twig',array('form'=>$form->createView(),'listeCursus'=>$listeCursus,'listeSemester'=>$listeSemester));
+        return $this->render('UTTEtuBundle:Etu:view.html.twig',array('form'=>$form->createView(),'listeCursus'=>$listeCursus,'listeSemester'=>$listeSemester,'idEtudiant'=>$etudiant->getIdEtudiant()));
     }
 }

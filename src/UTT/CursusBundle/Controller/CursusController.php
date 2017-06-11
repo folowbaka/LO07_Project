@@ -13,6 +13,12 @@ class CursusController extends Controller
         $cursus = new Cursus();
         $form   = $this->get('form.factory')->create(CursusType::class, $cursus);
 
+        $idEtudiant="";
+        if ($request->isMethod('POST'))
+        {
+            $idEtudiant=$_POST['idEtudiant'];
+        }
+
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
             $idetu=$_POST["idetu"];
@@ -38,7 +44,7 @@ class CursusController extends Controller
 
 
         return $this->render('UTTCursusBundle:Cursus:add.html.twig',array(
-            'form' => $form->createView()
+            'form' => $form->createView(),"idEtudiant"=>$idEtudiant
         ));
     }
 }

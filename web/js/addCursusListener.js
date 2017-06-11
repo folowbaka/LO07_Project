@@ -18,7 +18,6 @@ $(document).ready(function()
     if (addForm.getIndex() == 0) {
         addForm.addDynamicElement();
     } else {
-        // S'il existe déjà des catégories, on ajoute un lien de suppression pour chacune d'entre elles
         addForm.$container.children('div').each(function() {
             addForm.setPrototype($(this));
             addForm.addDeleteLink();
