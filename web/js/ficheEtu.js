@@ -5,19 +5,23 @@ $(document).ready(function()
 {
     $('#editEtuBtn').click(function(e){
         var inputetu=$('.input-etu');
-        if ($(inputetu).attr('readonly'))
+        if ($(inputetu).attr('disabled'))
             {
-                $(inputetu).removeAttr('readonly');
+                $(inputetu).removeAttr('disabled');
             }
         else
             {
-                $(inputetu).attr('readonly', 'true');
+                $(inputetu).attr('disabled', 'true');
             }
        $("#hideButton").toggle();
         });
     $('#addCursusEtu').click(function(e){
-        console.log("bite");
         $('#formAddCursus').submit();
     });
+
+    $('#deleteEtudiant').click(function(e){
+        $('#formDeleteEtudiant').submit();
+    });
+
 
 });

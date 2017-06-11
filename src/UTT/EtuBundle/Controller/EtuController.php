@@ -54,6 +54,13 @@ class EtuController extends Controller
             ->getRepository('UTTEtuBundle:Etudiant')
         ;
         $etudiant=$repositoryEtudiant->find($id);
+        if($request->isMethod('POST') && isset($_POST['deleteEtudiantBool']))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($etudiant);
+            $em->flush();
+            return $this->redirectToRoute('utt_etu_homepage');
+        }
         $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);
         $form->remove('idEtudiant');
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())

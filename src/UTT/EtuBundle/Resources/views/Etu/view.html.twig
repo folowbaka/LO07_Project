@@ -18,10 +18,10 @@
     </div>
     <div class="col-lg-12">
         {{ form_start(form) }}
-        <div class="form-group">{{ form_row(form.nom, {'attr':{'class':'form-control input-etu','readonly':'true'}}) }}</div>
-        <div class="form-group">{{ form_row(form.prenom, {'attr':{'class':'form-control input-etu','readonly':'true'}}) }}</div>
-        <div class="form-group">{{ form_row(form.admission, {'attr':{'class':'form-control input-etu','readonly':'true'}}) }}</div>
-        <div class="form-group">{{ form_row(form.filliere, {'attr':{'class':'form-control input-etu','readonly':'true'}}) }}</div>
+        <div class="form-group">{{ form_row(form.nom, {'attr':{'class':'form-control input-etu','disabled':'true'}}) }}</div>
+        <div class="form-group">{{ form_row(form.prenom, {'attr':{'class':'form-control input-etu','disabled':'true'}}) }}</div>
+        <div class="form-group">{{ form_row(form.admission, {'attr':{'class':'form-control input-etu','disabled':'true'}}) }}</div>
+        <div class="form-group">{{ form_row(form.filliere, {'attr':{'class':'form-control input-etu','disabled':'true'}}) }}</div>
         <div id="hideButton" class="row">
             <div class="col-lg-4 col-lg-offset-4">
                 <button type="submit" class="bouton">Valider</button>
@@ -30,7 +30,10 @@
         {{ form_end(form) }}
         <div class="row">
             <div class="col-lg-2">
-                <button class="bouton" type="button">Supprimer</button>
+                <form id="formDeleteEtudiant" action="{{ path('utt_etu_view',{'id':idEtudiant}) }}" method="POST">
+                    <input type="text" name="deleteEtudiantBool" id="deleteEtudiantBool" class="inputfile" value="{{ idEtudiant }}"/>
+                    <label for="deleteEtudiantbool" class="bouton" id="deleteEtudiant">Supprimer Etudiant</label>
+                </form>
             </div>
             <div class="col-lg-2 col-lg-offset-6">
                 <form id="formAddCursus" action="{{ path('utt_cursus_add') }}" method="POST">
