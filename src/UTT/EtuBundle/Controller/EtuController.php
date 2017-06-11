@@ -61,6 +61,12 @@ class EtuController extends Controller
             $em->flush();
             return $this->redirectToRoute('utt_etu_homepage');
         }
+        if($request->isMethod('POST') && isset($_POST['deleteCursusIndice']))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($etudiant->getCursus()[0]);
+            $em->flush();
+        }
         $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);
         $form->remove('idEtudiant');
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid())

@@ -23,5 +23,11 @@ $(document).ready(function()
         $('#formDeleteEtudiant').submit();
     });
 
+    $('.deleteCursusEtu').click(function(e){
+        var indiceCursus=$(this).parents(".cursusSection").children(".labelCursus").children(".idCursus").text();
+        $(this).parent().parent().find(".deleteCursusIndice").attr("value",indiceCursus);
+        $(this).parents('.formDeleteCursus').submit();
+    });
+
 
 });
