@@ -9,6 +9,7 @@ use UTT\CSVBundle\Form\CSVType;
 use UTT\EtuBundle\Entity\Etudiant;
 use UTT\CursusBundle\Entity\Element;
 use UTT\CursusBundle\Entity\Cursus;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 
 
@@ -134,6 +135,103 @@ class CSVController extends Controller
                 $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
                 return $this->redirectToRoute('utt_etu_view',array('id'=>$etudiantobjet->getIdEtudiant()));
             }
+            
         }
         }
-}
+        
+        
+        public function generateAction(){
+            $response = new StreamedResponse();
+            $response->setCallback(function() {
+                
+            $repositoryCursus = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTCursusBundle:Cursus');
+            $repositoryElement = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTCursusBundle:Element');
+            $repositoryEtudiant = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTEtuBundle:Etudiant');
+            
+            
+            
+            $cursus=$repositoryCursus->find('17'); //je choisi l'id du cursus
+            $elements=$repositoryElement->findByCursus($cursus);
+            $etudiantobjet=$repositoryEtudiant->findOneByIdEtudiant($cursus->getEtudiant()->getIdEtudiant());
+            $etudiant=array();
+            $row=array('ID','NO','PR','AD','FI');
+            array_push($etudiant,$etudiantobjet->getIdEtudiant());
+            array_push($etudiant,$etudiantobjet->getNom());
+            array_push($etudiant,$etudiantobjet->getPrenom());
+            array_push($etudiant,$etudiantobjet->getAdmission()->getNom());
+            array_push($etudiant,$etudiantobjet->getFilliere()->getNom());
+            $data=array();
+            
+            foreach($elements as $element){
+                $data_ligne=array();
+                array_push($data_ligne,'EL');
+                array_push($data_ligne,$element->getSemSeq());
+                array_push($data_ligne,$element->getSemLabel()->getNom());
+                array_push($data_ligne,$element->getSigle());
+                array_push($data_ligne,$element->getCategorie()->getNom());
+                array_push($data_ligne,$element->getAffectation()->getNom());
+                if($element->getUtt())
+                {
+                    array_push($data_ligne,'Y');
+                }
+                else
+                {
+                    array_push($data_ligne,'N');
+                    
+                }
+                if($element->getProfil())
+                {
+                    array_push($data_ligne,'Y');
+                }
+                else
+                {
+                    array_push($data_ligne,'N');
+                    
+                }
+                array_push($data_ligne,$element->getCredit());
+                array_push($data_ligne,$element->getResultat()->getNom());
+                array_push($data, $data_ligne);
+                
+                
+            }
+            array_push($data,array('END','','','','','','','','',''));
+            
+            $handle = fopen('php://output', 'w+');
+            for($i=0;$i<=4;$i++)
+            {
+                fputcsv($handle,array($row[$i],$etudiant[$i],'','','','','','','',''),';');
+            }
+
+            // Add the header of the CSV file
+            fputcsv($handle, array('==', 's_seq', 's_label','sigle','categorie','affectation','utt','profil','credit','resultat'),';');
+           foreach($data as $ligne) {
+                fputcsv(
+                    $handle, // The file pointer
+                    $ligne, // The fields
+                    ';' // The delimiter
+                );
+            }
+            fclose($handle);
+              });
+            $response->setStatusCode(200);
+            
+            $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+            $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+            return $response;
+             }     
+            
+        }
+            
+        
+        
+        
+

@@ -6,6 +6,6 @@ utt_csv_upload:
     path:     /ImportCSV
     defaults: { _controller: UTTCSVBundle:CSV:upload }
     
-utt_csv_view:
-    path:     /ImportCSV
-    defaults: { _controller: UTTCSVBundle:CSV:upload }
+utt_csv_generate:
+    path:     /GenerateCSV
+    defaults: { _controller: UTTCSVBundle:CSV:generate }
