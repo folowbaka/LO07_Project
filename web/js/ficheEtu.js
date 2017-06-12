@@ -28,6 +28,9 @@ $(document).ready(function()
         $(this).parent().parent().find(".deleteCursusIndice").attr("value",indiceCursus);
         $(this).parents('.formDeleteCursus').submit();
     });
+    $('.editCursusEtu').click(function(e){
+        $(this).parents('.formEditCursus').submit();
+    });
 
 
 });

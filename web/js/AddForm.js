@@ -66,5 +66,9 @@ AddForm.prototype.getPrototype=function()
 {
     return this._$prototype;
 }
+AddForm.prototype.getContainer=function()
+{
+    return this._$container;
+}
 
 

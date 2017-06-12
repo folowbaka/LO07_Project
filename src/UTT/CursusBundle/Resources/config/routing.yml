@@ -4,4 +4,8 @@ utt_cursus_homepage:
 utt_cursus_add:
     path:     /AjouterCursus
     defaults: { _controller: UTTCursusBundle:Cursus:add }
-
+utt_cursus_edit:
+    path:     /EditCursus/{id}
+    defaults: { _controller: UTTCursusBundle:Cursus:edit }
+    requirements:
+               id: '\d+'

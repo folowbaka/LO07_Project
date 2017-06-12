@@ -16,9 +16,10 @@ $(document).ready(function()
 
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
     if (addForm.getIndex() == 0) {
+        console.log("HELPE ME");
         addForm.addDynamicElement();
     } else {
-        addForm.$container.children('div').each(function() {
+        addForm.getContainer().children('div').each(function() {
             addForm.setPrototype($(this));
             addForm.addDeleteLink();
         });

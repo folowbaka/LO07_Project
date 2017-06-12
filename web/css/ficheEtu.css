@@ -39,3 +39,11 @@
     color: white;
     font-weight: bold;
 }
+.editCursusEtu
+{
+    background: #663399;
+}
+.idCursus
+{
+    display: none;
+}

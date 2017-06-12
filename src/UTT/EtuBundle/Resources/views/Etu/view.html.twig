@@ -76,6 +76,12 @@
                     </form>
                 </div>
                 <div class="col-lg-2">
+                    <form class="formEditCursus" action="{{ path('utt_cursus_edit',{'id':cursus.id}) }}" method="POST">
+                        <input type="number" name="editCursus"  class="inputfile editCursus"/>
+                        <label for="editCursus" class="bouton editCursusEtu" >Modifier</label>
+                    </form>
+                </div>
+                <div class="col-lg-2">
                     <button class="bouton btn-export-cursus col-lg-2">Exporter</button>
                 </div>
             </div>
