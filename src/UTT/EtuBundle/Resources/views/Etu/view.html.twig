@@ -82,7 +82,10 @@
                     </form>
                 </div>
                 <div class="col-lg-2">
-                    <button class="bouton btn-export-cursus col-lg-2">Exporter</button>
+                    <form class="formExportCursus" action="{{ path('utt_csv_generate',{'id':cursus.id}) }}" method="POST">
+                        <input type="number" name="exportCursus"  class="inputfile exportCursus"/>
+                        <label for="exportCursus" class="bouton btn-export-cursus" >Exporter</label>
+                    </form>
                 </div>
             </div>
         </div>

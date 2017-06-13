@@ -7,5 +7,7 @@ utt_csv_upload:
     defaults: { _controller: UTTCSVBundle:CSV:upload }
     
 utt_csv_generate:
-    path:     /GenerateCSV
+    path:     /GenerateCSV/{id}
     defaults: { _controller: UTTCSVBundle:CSV:generate }
+    requirements:
+                   id: '\d+'

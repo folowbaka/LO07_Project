@@ -31,6 +31,9 @@ $(document).ready(function()
     $('.editCursusEtu').click(function(e){
         $(this).parents('.formEditCursus').submit();
     });
+    $('.btn-export-cursus').click(function(e){
+        $(this).parents('.formExportCursus').submit();
+    });
 
 
 });

@@ -138,16 +138,12 @@ class CSVController extends Controller
             
         }
         }
-        
-        
-        public function generateAction(){
+
+
+        public function generateAction(Request $req,$id){
             $response = new StreamedResponse();
-            $response->setCallback(function() {
-                
-            $repositoryCursus = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('UTTCursusBundle:Cursus');
+            $response->setCallback(function() use ($id) {
+
             $repositoryElement = $this
             ->getDoctrine()
             ->getManager()
@@ -156,10 +152,13 @@ class CSVController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository('UTTEtuBundle:Etudiant');
-            
-            
-            
-            $cursus=$repositoryCursus->find('17'); //je choisi l'id du cursus
+            $repositoryCursus =
+                $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('UTTCursusBundle:Cursus');
+            $cursus=$repositoryCursus->find($id);
+
+
             $elements=$repositoryElement->findByCursus($cursus);
             $etudiantobjet=$repositoryEtudiant->findOneByIdEtudiant($cursus->getEtudiant()->getIdEtudiant());
             $etudiant=array();
@@ -170,7 +169,7 @@ class CSVController extends Controller
             array_push($etudiant,$etudiantobjet->getAdmission()->getNom());
             array_push($etudiant,$etudiantobjet->getFilliere()->getNom());
             $data=array();
-            
+
             foreach($elements as $element){
                 $data_ligne=array();
                 array_push($data_ligne,'EL');
@@ -186,7 +185,7 @@ class CSVController extends Controller
                 else
                 {
                     array_push($data_ligne,'N');
-                    
+
                 }
                 if($element->getProfil())
                 {
@@ -195,16 +194,16 @@ class CSVController extends Controller
                 else
                 {
                     array_push($data_ligne,'N');
-                    
+
                 }
                 array_push($data_ligne,$element->getCredit());
                 array_push($data_ligne,$element->getResultat()->getNom());
                 array_push($data, $data_ligne);
-                
-                
+
+
             }
             array_push($data,array('END','','','','','','','','',''));
-            
+
             $handle = fopen('php://output', 'w+');
             for($i=0;$i<=4;$i++)
             {
@@ -223,11 +222,12 @@ class CSVController extends Controller
             fclose($handle);
               });
             $response->setStatusCode(200);
-            
+
             $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
             $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+
             return $response;
-             }     
+             }
             
         }
             
