@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new UTT\CoreBundle\UTTCoreBundle(),
             new UTT\CursusBundle\UTTCursusBundle(),
             new UTT\CSVBundle\UTTCSVBundle(),
+            new UTT\ReglementBundle\UTTReglementBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,0 +1,30 @@
+{% extends "UTTEtuBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    {{ parent() }}
+
+{% endblock %}
+{% block topbody %}
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-offset-10">
+                <form enctype="multipart/form-data" action="{{ path('utt_reglement_import') }}" method="POST" id="formImport">
+                    <input type="file" name="file" id="file" class="inputfile" />
+                    <label for="file" id="boutonImport" class="bouton"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importer Reglement</label>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block etu_body %}
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset("js/listeReglement.js") }}"></script>
+{% endblock %}

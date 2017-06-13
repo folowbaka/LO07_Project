@@ -1,0 +1,9 @@
+utt_reglement_homepage:
+    path:     /
+    defaults: { _controller: UTTReglementBundle:Reglement:index }
+utt_reglement_view:
+        path:     /vue
+        defaults: { _controller: UTTReglementBundle:Reglement:view }
+utt_reglement_import:
+    path:     /importReglement
+    defaults: { _controller: UTTReglementBundle:Reglement:import }

@@ -1,3 +1,7 @@
+utt_reglement:
+    resource: "@UTTReglementBundle/Resources/config/routing.yml"
+    prefix:   /reglement
+
 uttcsv:
     resource: "@UTTCSVBundle/Resources/config/routing.yml"
     prefix:   /csv

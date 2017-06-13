@@ -89,8 +89,6 @@ class CSVController extends Controller
                  
                  $cursus=new Cursus();
                  $i=6;
-                 $bite=array();
-                 $kaka=array();
                  while($donnee[$i][0]==="EL")
                       {
                           $element=array();
@@ -142,7 +140,12 @@ class CSVController extends Controller
 
         public function generateAction(Request $req,$id){
             $response = new StreamedResponse();
-            $response->setCallback(function() use ($id) {
+            $repositoryCursus =
+                $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('UTTCursusBundle:Cursus');
+            $cursus=$repositoryCursus->find($id);
+            $response->setCallback(function() use ($cursus) {
 
             $repositoryElement = $this
             ->getDoctrine()
@@ -152,11 +155,6 @@ class CSVController extends Controller
             ->getDoctrine()
             ->getManager()
             ->getRepository('UTTEtuBundle:Etudiant');
-            $repositoryCursus =
-                $this->getDoctrine()
-                    ->getManager()
-                    ->getRepository('UTTCursusBundle:Cursus');
-            $cursus=$repositoryCursus->find($id);
 
 
             $elements=$repositoryElement->findByCursus($cursus);
@@ -224,7 +222,7 @@ class CSVController extends Controller
             $response->setStatusCode(200);
 
             $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
-            $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+            $response->headers->set('Content-Disposition','attachment; filename="'.$cursus->getLabel().'.csv"');
 
             return $response;
              }
