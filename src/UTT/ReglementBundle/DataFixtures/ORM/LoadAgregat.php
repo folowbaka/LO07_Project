@@ -4,7 +4,7 @@ namespace UTT\ReglementBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use UTT\CursusBundle\Entity\Agregat;
+use UTT\ReglementBundle\Entity\Agregat;
 /**
  * Created by IntelliJ IDEA.
  * User: Folow
