@@ -3,6 +3,7 @@
 namespace UTT\ReglementBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Reglement
@@ -72,14 +73,14 @@ class Reglement
     {
         return $this->label;
     }
-    public function addRegle(Element $regles)
+    public function addRegle(Regle $regles)
     {
         // Ici, on utilise l'ArrayCollection vraiment comme un tableau
         $this->regles[] = $regles;
         $regles->setReglement($this);
     }
 
-    public function removeElement(Element $regles)
+    public function removeElement(Regle $regles)
     {
         $this->elements->removeElement($regles);
     }
