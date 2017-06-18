@@ -34,6 +34,29 @@ $(document).ready(function()
     $('.btn-export-cursus').click(function(e){
         $(this).parents('.formExportCursus').submit();
     });
+    $(".test-cursus").click(function () {
+
+        var reglement=$(this).parent().children('.select-reglement').val();
+        var url=$(this).attr("data-url");
+
+        $.ajax({
+            method: "POST",
+            url: url,
+            data: { name: "John", location: "Boston" }
+        })
+            .done(function( response ) {
+                console.log(response);
+                $( "#dialog" ).dialog({
+                    modal: true,
+                    buttons: {
+                        Ok: function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            });
+
+    });
 
 
 });

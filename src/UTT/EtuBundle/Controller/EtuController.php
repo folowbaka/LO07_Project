@@ -53,6 +53,11 @@ class EtuController extends Controller
             ->getManager()
             ->getRepository('UTTEtuBundle:Etudiant')
         ;
+        $repositoryReglement = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTReglementBundle:Reglement')
+        ;
         $etudiant=$repositoryEtudiant->find($id);
         if($request->isMethod('POST') && isset($_POST['deleteEtudiantBool']))
         {
@@ -85,9 +90,10 @@ class EtuController extends Controller
         {
             $listeSemester[] = $repositoryElement->findSemesterCursus($cursus->getId());
         }
+        $reglements=$repositoryReglement->findAll();
 
 
 
-        return $this->render('UTTEtuBundle:Etu:view.html.twig',array('form'=>$form->createView(),'listeCursus'=>$listeCursus,'listeSemester'=>$listeSemester,'idEtudiant'=>$etudiant->getIdEtudiant()));
+        return $this->render('UTTEtuBundle:Etu:view.html.twig',array('form'=>$form->createView(),'listeCursus'=>$listeCursus,'listeSemester'=>$listeSemester,'idEtudiant'=>$etudiant->getIdEtudiant(),'reglements'=>$reglements));
     }
 }

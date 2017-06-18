@@ -9,3 +9,6 @@ utt_cursus_edit:
     defaults: { _controller: UTTCursusBundle:Cursus:edit }
     requirements:
                id: '\d+'
+utt_cursus_testcursusreglement:
+    path: /testCursus
+    defaults: { _controller: UTTCursusBundle:Cursus:testCursuReglement }

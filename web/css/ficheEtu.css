@@ -42,8 +42,23 @@
 .editCursusEtu
 {
     background: #663399;
+    color: white;
 }
 .idCursus
 {
     display: none;
 }
+.select-reglement
+{
+    text-align: center;
+}
+.reglementEtu
+{
+    text-align: center;
+}
+#dialog
+{
+    display: none;
+}
+
+

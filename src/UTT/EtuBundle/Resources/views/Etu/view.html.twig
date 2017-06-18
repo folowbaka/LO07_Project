@@ -4,6 +4,7 @@
     {# On charge le CSS de bootstrap depuis le site directement #}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/ficheEtu.css') }}"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 {% endblock %}
 {% block etu_body %}
@@ -87,12 +88,26 @@
                         <label for="exportCursus" class="bouton btn-export-cursus" >Exporter</label>
                     </form>
                 </div>
+                <div class="col-lg-6">
+                    <div class="col-lg-5 col-lg-offset-7 reglementEtu">
+                        <select class="select form-control select-reglement">
+                            {% for reglement in reglements %}
+                                <option>{{ reglement.label }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="" class="bouton test-cursus" data-url="{{ path('utt_cursus_testcursusreglement') }}">Tester Cursus</label>
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
+    </div>
+    <div id="dialog" title="Basic dialog">
+        <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
     </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset("js/ficheEtu.js") }}"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}

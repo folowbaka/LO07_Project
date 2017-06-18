@@ -76,6 +76,16 @@ class CursusController extends Controller
         return $this->render('UTTCursusBundle:Cursus:edit.html.twig');
 
     }
+    public function testCursuReglementAction()
+    {
+        $response = new StreamedResponse();
+        $response->setStatusCode(200);
+
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+        $response->headers->set('Content-Disposition','attachment; filename="csv"');
+
+        return $response;
+    }
 
 
 }
