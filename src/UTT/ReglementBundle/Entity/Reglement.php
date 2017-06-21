@@ -80,16 +80,6 @@ class Reglement
         $regles->setReglement($this);
     }
 
-    public function removeElement(Regle $regles)
-    {
-        $this->elements->removeElement($regles);
-    }
-
-    public function getElements()
-    {
-        return $this->regles;
-    }
-
     /**
      * Remove regle
      *

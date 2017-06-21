@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use UTT\CursusBundle\Entity\Cursus;
 use UTT\CursusBundle\Form\CursusType;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 class CursusController extends Controller
 {
     public function addAction(Request $request)
@@ -76,13 +77,66 @@ class CursusController extends Controller
         return $this->render('UTTCursusBundle:Cursus:edit.html.twig');
 
     }
-    public function testCursuReglementAction()
+    public function testCursuReglementAction(Request $request)
     {
-        $response = new StreamedResponse();
-        $response->setStatusCode(200);
+        $repositoryElement = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTCursusBundle:Element');
+        $repositoryReglement = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTReglementBundle:Reglement');
+        $repositoryCategorie = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('UTTCursusBundle:Categorie');
+        $labelReglement=$request->request->get('reglement');
+        $idCursus=$request->request->get('idCursus');
+        $reglement=$repositoryReglement->findOneBy(array("label"=>$labelReglement));
+        $regles=$reglement->getRegles();
 
-        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
-        $response->headers->set('Content-Disposition','attachment; filename="csv"');
+        $i=0;
+        $j=0;
+        $validation=true;
+        $agregat=[];
+        foreach ($regles as $regle)
+        {
+            $cibleAgregat=$regle->getCibleAgregat();
+            if($regle->getAgregat()->getNom()=="EXIST")
+            {
+                if($regle->getAffectation()->getNom()=="UTT")
+                {
+                    $categorie=$repositoryCategorie->findOneBy(array("nom"=>$cibleAgregat));
+                    $element=$repositoryElement->findOneby(array("categorie"=>$categorie,"cursus"=>$idCursus));
+                    if(!empty($element))
+                        $i++;
+                }
+            }
+            else if($regle->getAgregat()->getNom()=="SUM")
+            {
+                if(empty($regle->getAffectation()))
+                {
+
+                }
+                else if(preg_match("/^UTT\([A-Z-+]+\)/",$cibleAgregat))
+                {
+                    $agregat[]=preg_split("/[+()]/",$cibleAgregat);
+                    $i++;
+                }
+                else if (preg_match("/[a-zA-Z]\+[a-zA-Z]/",$cibleAgregat))
+                {
+                    $i++;
+                }
+                else
+                {
+                    $i++;
+                }
+            }
+
+        }
+        $response = new JsonResponse(array('data' => $i));
+
 
         return $response;
     }

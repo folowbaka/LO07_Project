@@ -38,14 +38,15 @@ $(document).ready(function()
 
         var reglement=$(this).parent().children('.select-reglement').val();
         var url=$(this).attr("data-url");
+        var idCursus=$(this).parent().children(".idCursus").text();
 
         $.ajax({
             method: "POST",
             url: url,
-            data: { name: "John", location: "Boston" }
+            data: { reglement: reglement, idCursus: idCursus }
         })
             .done(function( response ) {
-                console.log(response);
+                console.log(response["data"]);
                 $( "#dialog" ).dialog({
                     modal: true,
                     buttons: {
