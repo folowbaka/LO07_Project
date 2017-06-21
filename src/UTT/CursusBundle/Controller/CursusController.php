@@ -96,46 +96,125 @@ class CursusController extends Controller
         $reglement=$repositoryReglement->findOneBy(array("label"=>$labelReglement));
         $regles=$reglement->getRegles();
 
-        $i=0;
-        $j=0;
+        $textValidation=array();
         $validation=true;
-        $agregat=[];
         foreach ($regles as $regle)
         {
             $cibleAgregat=$regle->getCibleAgregat();
+            $regleLabel=$regle->getLabel();
             if($regle->getAgregat()->getNom()=="EXIST")
             {
+                $categorie=$repositoryCategorie->findOneBy(array("nom"=>$cibleAgregat));
                 if($regle->getAffectation()->getNom()=="UTT")
                 {
-                    $categorie=$repositoryCategorie->findOneBy(array("nom"=>$cibleAgregat));
-                    $element=$repositoryElement->findOneby(array("categorie"=>$categorie,"cursus"=>$idCursus));
-                    if(!empty($element))
-                        $i++;
-                }
-            }
-            else if($regle->getAgregat()->getNom()=="SUM")
-            {
-                if(empty($regle->getAffectation()))
-                {
 
-                }
-                else if(preg_match("/^UTT\([A-Z-+]+\)/",$cibleAgregat))
-                {
-                    $agregat[]=preg_split("/[+()]/",$cibleAgregat);
-                    $i++;
-                }
-                else if (preg_match("/[a-zA-Z]\+[a-zA-Z]/",$cibleAgregat))
-                {
-                    $i++;
+                    $elements = $repositoryElement->findOneby(array("categorie" => $categorie, "cursus" => $idCursus));
+                    if(!empty($elements))
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est validée,vous avez validez dans votre cursus un ".$cibleAgregat;
+                    }
+                    else
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est n'est pas validée,vous n'avez pas validez dans votre cursus un ".$cibleAgregat;
+                        $validation=false;
+                    }
                 }
                 else
                 {
-                    $i++;
+                    $affectation=$regle->getAffectation();
+                    $affectationNom=$affectation->getNom();
+                    $elements=$repositoryElement->existElementCursus($idCursus,$categorie,$affectation);
+                    if(!empty($elements))
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est validée,vous avez validez un ".$cibleAgregat." en ".$affectationNom;
+                    }
+                    else
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est n'est pas validée,vous n'avez pas validez de ".$cibleAgregat." en ".$affectationNom;
+                        $validation=false;
+                    }
+                }
+
+            }
+            else if($regle->getAgregat()->getNom()=="SUM")
+            {
+                $seuil=$regle->getSeuil();
+                if(empty($regle->getAffectation()))
+                {
+                    $sum=$repositoryElement->SumCreditCursus($idCursus);
+                    if($sum>=$seuil)
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est validée,vous avez validez plus de ".$seuil." crédits dans votre cursus  avec ".$sum.' crédits.';
+                    }
+                    else
+                    {
+                        $textValidation[]="Regle ".$regleLabel." n'est pas validée,vous avez validez que ".$sum." crédits dans votre cursus  alors qu'il faut valider plus de  ".$seuil.' crédits.';
+                        $validation=false;
+                    }
+                }
+                else if(preg_match("/^UTT\([A-Z-+]+\)/",$cibleAgregat))
+                {
+                    $utt=1;
+                    $agregat=preg_split("/[+()]/",$cibleAgregat);
+                    $affectation=$regle->getAffectation();
+                    $affectationNom=$affectation->getNom();
+                    $categorie=$repositoryCategorie->findOneBy(array("nom"=>$agregat[1]));
+                    $sum=0;
+                    $sum=$sum+$repositoryElement->SumElementCursus($idCursus,$categorie,$affectation,$utt);
+                    $categorie=$repositoryCategorie->findOneBy(array("nom"=>$agregat[2]));
+                    $sum=$sum+$repositoryElement->SumElementCursus($idCursus,$categorie,$affectation,$utt);
+                    if($sum>=$seuil)
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est validée,vous avez validez plus de ".$seuil." crédits ".$cibleAgregat." dans en ".$affectationNom."  avec ".$sum.' crédits.';
+                    }
+                    else
+                    {
+                        $textValidation[]="Regle ".$regleLabel." n'est pas validée,vous avez validez que ".$sum." crédits ".$cibleAgregat."en ".$affectationNom."  alors qu'il faut valider plus de  ".$seuil.' crédits.';
+                        $validation=false;
+                    }
+                }
+                else if (preg_match("/[a-zA-Z]\+[a-zA-Z]/",$cibleAgregat))
+                {
+                    $utt=null;
+                    $cibleAgregats=explode("+",$cibleAgregat);
+                    $affectation=$regle->getAffectation();
+                    $affectationNom=$affectation->getNom();
+                    $categorie=$repositoryCategorie->findOneBy(array("nom"=>$cibleAgregats[0]));
+                    $sum=0;
+                    $sum=$sum+$repositoryElement->SumElementCursus($idCursus,$categorie,$affectation,$utt);
+                    $categorie=$repositoryCategorie->findOneBy(array("nom"=>$cibleAgregats[1]));
+                    $sum=$sum+$repositoryElement->SumElementCursus($idCursus,$categorie,$affectation,$utt);
+                    if($sum>=$seuil)
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est validée,vous avez validez plus de ".$seuil." crédits ".$cibleAgregat." en ".$affectationNom."  avec ".$sum.' crédits.';
+                    }
+                    else
+                    {
+                        $textValidation[]="Regle ".$regleLabel." n'est pas validée,vous avez validez que ".$sum." crédits ".$cibleAgregat." en ".$affectationNom."  alors qu'il faut valider plus de  ".$seuil.' crédits.';
+                        $validation=false;
+                    }
+                }
+                else
+                {
+                    $utt=null;
+                    $affectation=$regle->getAffectation();
+                    $affectationNom=$affectation->getNom();
+                    $categorie=$repositoryCategorie->findOneBy(array("nom"=>$cibleAgregat));
+                    $sum=$repositoryElement->SumElementCursus($idCursus,$categorie,$affectation,$utt);
+                    if($sum>=$seuil)
+                    {
+                        $textValidation[]="Regle ".$regleLabel." est validée,vous avez validez plus de ".$seuil." crédits ".$cibleAgregat." dans en ".$affectationNom."  avec ".$sum.' crédits.';
+                    }
+                    else
+                    {
+                        $textValidation[]="Regle ".$regleLabel." n'est pas validée,vous avez validez que ".$sum." crédits ".$cibleAgregat." en ".$affectationNom."  alors qu'il faut valider plus de  ".$seuil.' crédits.';
+                        $validation=false;
+                    }
                 }
             }
 
         }
-        $response = new JsonResponse(array('data' => $i));
+        $response = new JsonResponse(array("text"=>$textValidation,"validation"=>$validation));
 
 
         return $response;

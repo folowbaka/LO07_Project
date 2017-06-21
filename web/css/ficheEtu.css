@@ -57,8 +57,11 @@
     text-align: center;
 }
 #dialog
-{
-    display: none;
-}
+ {
+     display: none;
+     text-align: center;
+ }
+
+
 
 

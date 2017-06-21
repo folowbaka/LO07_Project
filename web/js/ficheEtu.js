@@ -46,9 +46,24 @@ $(document).ready(function()
             data: { reglement: reglement, idCursus: idCursus }
         })
             .done(function( response ) {
-                console.log(response["data"]);
+                $("#dialog>ul").html("");
+                $("#dialog>h2").html("");
+                for(textValidation in response["text"])
+                {
+                    $("#dialog>ul").append("<li>"+response["text"][textValidation]+"</li>");
+                }
+                if(response["validation"])
+                {
+                    $("#dialog>h2").append("Votre cursus est valide");
+                }
+                else
+                {
+                    $("#dialog>h2").append("Votre cursus n'est pas valide");
+                }
                 $( "#dialog" ).dialog({
                     modal: true,
+                    minHeight: 500,
+                    minWidth: 800,
                     buttons: {
                         Ok: function() {
                             $( this ).dialog( "close" );

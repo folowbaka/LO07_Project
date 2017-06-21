@@ -66,7 +66,10 @@ class ReglementController extends Controller
                 $regle=new Regle();
                 $regle->setLabel($donnee[$i][0]);
                 $regle->setAgregat($repositoryAgregat->findOneBy(array("nom"=>$donnee[$i][1])));
-                $regle->setSeuil($donnee[$i][4]);
+                if($donnee[$i][4]!=null)
+                    $regle->setSeuil($donnee[$i][4]);
+                else
+                    $regle->setSeuil($donnee[$i][3]);
                 $reglement->addRegle($regle);
 
                 $em->persist($reglement);
