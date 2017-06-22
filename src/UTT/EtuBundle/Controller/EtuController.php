@@ -69,7 +69,7 @@ class EtuController extends Controller
         if($request->isMethod('POST') && isset($_POST['deleteCursusIndice']))
         {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($etudiant->getCursus()[0]);
+            $em->remove($etudiant->getCursus()[$_POST['deleteCursusIndice']]);
             $em->flush();
         }
         $form   = $this->get('form.factory')->create(EtudiantType::class, $etudiant);

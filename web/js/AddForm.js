@@ -5,7 +5,7 @@
 var AddForm=function($container)
 {
     this._$container=$container;
-    this._index=0;
+    this._index=$container.find(':input').length;
 
 
 
@@ -25,7 +25,7 @@ AddForm.prototype.addDynamicElement=function()
         $(this._$prototype).find('.selectpicker').selectpicker({
         });
         // On ajoute le prototype modifié à la fin de la balise <div>
-        this._$container.append(this._$prototype)
+        this._$container.append(this._$prototype);
         this.addDeleteLink();
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
             this._index++;

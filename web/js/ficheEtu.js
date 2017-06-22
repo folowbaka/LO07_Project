@@ -25,6 +25,7 @@ $(document).ready(function()
 
     $('.deleteCursusEtu').click(function(e){
         var indiceCursus=$(this).parents(".cursusSection").children(".labelCursus").children(".idCursus").text();
+        console.log(indiceCursus);
         $(this).parent().parent().find(".deleteCursusIndice").attr("value",indiceCursus);
         $(this).parents('.formDeleteCursus').submit();
     });
