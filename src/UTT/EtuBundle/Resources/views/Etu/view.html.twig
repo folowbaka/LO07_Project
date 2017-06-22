@@ -12,7 +12,7 @@
         <div class="row">
             <h2 class="col-lg-4">Fiche Etudiant</h2>
             <div class="col-lg-2 col-lg-offset-6">
-                <button class="bouton" id="editEtuBtn">Modifier</button>
+                <button class="bouton" id="editEtuBtn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier</button>
             </div>
         </div>
     </div>
@@ -32,19 +32,20 @@
             <div class="col-lg-3">
                 <form id="formDeleteEtudiant" action="{{ path('utt_etu_view',{'id':idEtudiant}) }}" method="POST">
                     <input type="text" name="deleteEtudiantBool" id="deleteEtudiantBool" class="inputfile" value="{{ idEtudiant }}"/>
-                    <label for="deleteEtudiantbool" class="bouton" id="deleteEtudiant">Supprimer Etudiant</label>
+                    <label for="deleteEtudiantbool" class="bouton" id="deleteEtudiant"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer Etudiant</label>
                 </form>
             </div>
             <div class="col-lg-2 col-lg-offset-5">
                 <form id="formAddCursus" action="{{ path('utt_cursus_add') }}" method="POST">
                     <input type="text" name="idEtudiant" id="idEtudiant" class="inputfile" value="{{ idEtudiant }}"/>
-                    <label for="idEtudiant" class="bouton" id="addCursusEtu">Ajouter Cursus</label>
+                    <label for="idEtudiant" class="bouton" id="addCursusEtu"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter Cursus</label>
                 </form>
             </div>
             <div class="col-lg-2">
                 <button class="bouton" type="button">Importer Cursus</button>
             </div>
         </div>
+        <hr>
     </div>
     <div class="col-lg-12">
     {% for cursus in listeCursus %}
@@ -73,19 +74,19 @@
                 <div class="col-lg-2">
                     <form class="formDeleteCursus" action="{{ path('utt_etu_view',{'id':idEtudiant}) }}" method="POST">
                         <input type="number" name="deleteCursusIndice"  class="inputfile deleteCursusIndice"/>
-                        <label for="deleteCursusIndice" class="bouton btn-delete-cursus deleteCursusEtu" >Supprimer</label>
+                        <label for="deleteCursusIndice" class="bouton btn-delete-cursus deleteCursusEtu" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer</label>
                     </form>
                 </div>
                 <div class="col-lg-2">
                     <form class="formEditCursus" action="{{ path('utt_cursus_edit',{'id':cursus.id}) }}" method="POST">
                         <input type="number" name="editCursus"  class="inputfile editCursus"/>
-                        <label for="editCursus" class="bouton editCursusEtu" >Modifier</label>
+                        <label for="editCursus" class="bouton editCursusEtu" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Modifier</label>
                     </form>
                 </div>
                 <div class="col-lg-2">
                     <form class="formExportCursus" action="{{ path('utt_csv_generate',{'id':cursus.id}) }}" method="POST">
                         <input type="number" name="exportCursus"  class="inputfile exportCursus"/>
-                        <label for="exportCursus" class="bouton btn-export-cursus" >Exporter</label>
+                        <label for="exportCursus" class="bouton btn-export-cursus" ><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Exporter</label>
                     </form>
                 </div>
                 <div class="col-lg-6">
@@ -100,6 +101,7 @@
                     </div>
                 </div>
             </div>
+            <hr>
         </div>
     {% endfor %}
     </div>

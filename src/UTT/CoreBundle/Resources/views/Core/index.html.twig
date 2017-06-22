@@ -4,11 +4,19 @@
     Accueil - {{ parent() }}
 {% endblock %}
 
-{% block body %}
+{% block stylesheets %}
+    {# On charge le CSS de bootstrap depuis le site directement #}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/accueil.css') }}"/>
+
+{% endblock %}
+{% block corebody %}
     {# On définit un sous-titre commun à toutes les pages du bundle, par exemple #}
-    <h1>Accueil</h1>
+    <img id="logoUTT" src="{{ asset("image/uttlogo.jpg") }}" alt="logo utt"/>
 
     <hr>
+
+    <p id="textAccueil">Bienvenu sur le site de gestion de Cursus du module LO07 de l'Université de technologie de Troyes</p>
 
     {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
 {% endblock %}

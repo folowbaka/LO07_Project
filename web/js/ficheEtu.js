@@ -50,7 +50,7 @@ $(document).ready(function()
                 $("#dialog>h2").html("");
                 for(textValidation in response["text"])
                 {
-                    $("#dialog>ul").append("<li>"+response["text"][textValidation]+"</li>");
+                    $("#dialog>ul").append("<li>"+response["text"][textValidation]+"</li><hr>");
                 }
                 if(response["validation"])
                 {

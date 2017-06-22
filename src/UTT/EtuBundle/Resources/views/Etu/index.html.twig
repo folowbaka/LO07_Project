@@ -26,9 +26,11 @@
                 <tr>
                     <th>Nom</th>
                     <th>Prenom</th>
+                    <th>Admission</th>
+                    <th>Filliere</th>
                 </tr>
                 {% for etudiant in etudiants %}
-                    <tr class="lineEtu"><td class="idLineEtu">{{ etudiant.idetudiant }}</td><td>{{ etudiant.nom }}</td><td>{{ etudiant.prenom }}</td></tr>
+                    <tr class="lineEtu"><td class="idLineEtu">{{ etudiant.idetudiant }}</td><td>{{ etudiant.nom }}</td><td>{{ etudiant.prenom }}</td><td>{{ etudiant.admission.nom }}</td><td>{{ etudiant.filliere.nom }}</td></tr>
                     {% endfor %}
             </table>
         </div>

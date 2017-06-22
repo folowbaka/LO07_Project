@@ -61,7 +61,28 @@
      display: none;
      text-align: center;
  }
+.inputfile + #deleteEtudiant {
+    background-color: #b23c30;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+    width: 100%;
+    margin: 0 0 10px 0;
+    transition: background-color .5s;
+}
 
+.inputfile + #boutonImport:hover
+{
+    background: #8a3328;
+
+}
+.inputfile + #boutonImport:active
+{
+    outline-offset: -2px;
+    outline: 1px dotted #000;
+    border-color:#0F3A1D;
+}
 
 
 

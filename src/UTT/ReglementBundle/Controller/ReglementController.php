@@ -75,10 +75,10 @@ class ReglementController extends Controller
                 $em->persist($reglement);
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-                return $this->render('UTTReglementBundle:Reglement:view.html.twig');
+                return $this->render('UTTReglementBundle:Reglement:index.html.twig');
             }
-            return $this->render('UTTReglementBundle:Reglement:view.html.twig');
+            return $this->render('UTTReglementBundle:Reglement:index.html.twig');
         }
-        return $this->render('UTTReglementBundle:Reglement:view.html.twig');
+        return $this->render('UTTReglementBundle:Reglement:index.html.twig');
     }
 }

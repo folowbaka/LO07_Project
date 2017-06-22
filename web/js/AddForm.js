@@ -25,7 +25,7 @@ AddForm.prototype.addDynamicElement=function()
         $(this._$prototype).find('.selectpicker').selectpicker({
         });
         // On ajoute le prototype modifié à la fin de la balise <div>
-        this._$container.append(this._$prototype);
+        this._$container.append(this._$prototype)
         this.addDeleteLink();
         // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
             this._index++;
@@ -37,6 +37,7 @@ AddForm.prototype.addDeleteLink=function ()
 
     // Ajout du lien
     this._$prototype.append($deleteLink);
+    this._$prototype.append("<hr>");
 
     // Ajout du listener sur le clic du lien pour effectivement supprimer la catégoriea
         var addform=this;
